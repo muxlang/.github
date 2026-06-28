@@ -26,6 +26,7 @@ Rust's type safety, compiled to native code via LLVM.
 - Want to understand how it fits together? See [muxlang/context](https://github.com/muxlang/context).
 - Want to contribute? Each repo has its own `README.md` and `AGENTS.md`; shared
   contribution guidelines live in this repo's `CONTRIBUTING.md`.
-- Found a bug or have an idea? Open an issue in the relevant repo.
+- Found a bug or have an idea? Open an issue in the relevant repo - or, if you're
+  unsure which one, in [context](https://github.com/muxlang/context/issues) for triage.
 
 Mux is MIT-licensed and welcomes contributions.
