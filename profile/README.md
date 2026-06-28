@@ -18,10 +18,12 @@ Rust's type safety, compiled to native code via LLVM.
 | [mux-website-api](https://github.com/muxlang/mux-website-api) | The Fly.io compile/run API behind the playground. |
 | [tree-sitter-mux](https://github.com/muxlang/tree-sitter-mux) | Tree-sitter grammar + highlight queries (Neovim, Helix, Emacs). |
 | [mux-syntax-highlighting](https://github.com/muxlang/mux-syntax-highlighting) | TextMate grammar, VSCode extension, editor configs, and the canonical syntax spec. |
+| [context](https://github.com/muxlang/context) | Cross-repo knowledge hub: architecture, design rationale, feature map, glossary, and the release process. |
 
 ## Getting involved
 
 - New to the language? Start with the [docs](https://mux-lang.dev).
+- Want to understand how it fits together? See [muxlang/context](https://github.com/muxlang/context).
 - Want to contribute? Each repo has its own `README.md` and `AGENTS.md`; shared
   contribution guidelines live in this repo's `CONTRIBUTING.md`.
 - Found a bug or have an idea? Open an issue in the relevant repo.
