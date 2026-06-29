@@ -15,10 +15,10 @@ testing, etc.) - always check the repo you are working in.
 | Playground compile/run API | [mux-website-api](https://github.com/muxlang/mux-website-api) |
 | Tree-sitter grammar (Neovim/Helix/Emacs) | [tree-sitter-mux](https://github.com/muxlang/tree-sitter-mux) |
 | TextMate / VSCode / editor highlighting | [mux-syntax-highlighting](https://github.com/muxlang/mux-syntax-highlighting) |
-| Cross-repo architecture / design / docs about how it all fits | [context](https://github.com/muxlang/context) |
+| Cross-repo architecture / design / docs about how it all fits | [mux-context](https://github.com/muxlang/mux-context) |
 
 Not sure where something belongs? Open an issue in
-[context](https://github.com/muxlang/context/issues) and it will be triaged and
+[mux-context](https://github.com/muxlang/mux-context/issues) and it will be triaged and
 moved to the right repo.
 
 ## Workflow
@@ -41,5 +41,5 @@ moved to the right repo.
 
 Use the issue templates in the relevant repo. Include enough detail to reproduce
 (version from `mux --version`, OS, a minimal example). If you are unsure which
-repo it belongs to, file it in [context](https://github.com/muxlang/context/issues)
+repo it belongs to, file it in [mux-context](https://github.com/muxlang/mux-context/issues)
 and it will be triaged from there.
