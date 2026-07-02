@@ -1,0 +1,30 @@
+# Repo-specific label overlay for mux-compiler, layered on top of labels.yml.
+# Only labels that are genuinely compiler-specific or posted by a bot belong here.
+# ASCII only. Colors are 6-digit hex, no leading '#'.
+
+# --- Area ---
+- name: stdlib
+  color: "560143"
+  description: A stdlib addition or change
+- name: frontend
+  color: 4a7967
+  description: An issue with the compiler frontend
+
+# --- Complexity (compiler triage) ---
+- name: low complexity
+  color: 2ac13e
+  description: Small, well-scoped change
+- name: med complexity
+  color: 675b2d
+  description: Moderate change, some design needed
+- name: high complexity
+  color: 931b22
+  description: Large or involved change
+
+# --- Bot-managed (do not remove; bots post these) ---
+- name: tembo
+  color: ffffff
+  description: Pull request created by Tembo
+- name: dependencies
+  color: "0366d6"
+  description: Pull requests that update a dependency file

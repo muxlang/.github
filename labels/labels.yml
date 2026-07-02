@@ -1,0 +1,73 @@
+# Canonical label set for every muxlang repo. This file is the authoritative
+# list; apply it to each repo manually (e.g. gh label create --force). See
+# docs/repo-governance.md in mux-context for the taxonomy and Linear mapping.
+# These are orthogonal to the org issue types (Task / Bug / Feature) - labels add
+# dimensions the type does not carry. ASCII only (org rule).
+# Colors are 6-digit hex, no leading '#'.
+
+# --- Kind (complements the issue type) ---
+- name: documentation
+  color: 0075ca
+  description: Improvements or additions to documentation
+- name: chore
+  color: fc9e1b
+  description: Cleanup, maintenance, or dependency bumps
+- name: refactor
+  color: 5319e7
+  description: Internal restructuring with no behavior change
+- name: optimization
+  color: 0f0cc1
+  description: Performance or efficiency improvement
+- name: testing
+  color: 9f267d
+  description: Test coverage or test infrastructure
+
+# --- Priority (maps to Linear priority) ---
+- name: "priority: urgent"
+  color: b60205
+  description: Needs attention now
+- name: "priority: high"
+  color: d93f0b
+  description: Important, schedule soon
+- name: "priority: medium"
+  color: fbca04
+  description: Normal priority
+- name: "priority: low"
+  color: 0e8a16
+  description: Nice to have, no rush
+
+# --- Quality (works, but feels off) ---
+- name: inconsistency
+  color: c5def5
+  description: Behaves or looks different across places that should match
+- name: polish
+  color: bfd4f2
+  description: Small rough edge or papercut; nothing broken, just unrefined
+
+# --- Workflow / triage ---
+- name: needs triage
+  color: ededed
+  description: Not yet reviewed or categorized
+- name: blocked
+  color: b60205
+  description: Blocked on another issue or external dependency
+- name: needs testing
+  color: d33294
+  description: Needs testing to confirm all cases are covered
+- name: duplicate
+  color: cfd3d7
+  description: This issue or pull request already exists
+- name: invalid
+  color: e4e669
+  description: This does not seem right
+- name: wontfix
+  color: ffffff
+  description: This will not be worked on
+
+# --- Community ---
+- name: good first issue
+  color: 7057ff
+  description: Good for newcomers
+- name: help wanted
+  color: 008672
+  description: Extra attention is needed
