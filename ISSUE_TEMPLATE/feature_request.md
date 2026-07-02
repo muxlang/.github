@@ -2,7 +2,6 @@
 name: Feature request
 about: Suggest an idea or enhancement
 title: ""
-type: Feature
 labels: needs triage
 assignees: DerekCorniello
 ---

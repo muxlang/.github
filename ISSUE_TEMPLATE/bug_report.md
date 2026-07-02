@@ -2,7 +2,6 @@
 name: Bug report
 about: Report something that is not working as expected
 title: ""
-type: Bug
 labels: needs triage
 assignees: DerekCorniello
 ---
