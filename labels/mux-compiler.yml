@@ -23,7 +23,7 @@
 
 # --- Bot-managed (do not remove; bots post these) ---
 - name: tembo
-  color: ffffff
+  color: dda0dd
   description: Pull request created by Tembo
 - name: dependencies
   color: "0366d6"
