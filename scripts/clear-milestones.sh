@@ -20,7 +20,7 @@ gh api "repos/$FULL/issues?state=all&per_page=100" --paginate \
 done
 
 echo "Closing milestones on $FULL ..."
-gh api "repos/$FULL/milestones?state=all" --jq '.[].number' | while read -r n; do
+gh api "repos/$FULL/milestones?state=all&per_page=100" --paginate --jq '.[].number' | while read -r n; do
   gh api -X PATCH "repos/$FULL/milestones/$n" -f state=closed
   echo "  closed milestone #$n"
 done
