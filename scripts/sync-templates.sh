@@ -16,6 +16,7 @@ if [[ ! -d "$SRC" ]]; then
   exit 1
 fi
 
+rm -rf "$DEST/.github/ISSUE_TEMPLATE"
 mkdir -p "$DEST/.github/ISSUE_TEMPLATE" "$DEST/.github/workflows"
 cp -r "$SRC/." "$DEST/.github/ISSUE_TEMPLATE/"
 cp "$ROOT/templates/shared/workflows/issue-triage.yml" "$DEST/.github/workflows/issue-triage.yml"
