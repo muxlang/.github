@@ -8,7 +8,7 @@ FULL="muxlang/$REPO"
 
 echo "Clearing milestones on $FULL ..."
 gh api "repos/$FULL/issues?state=all&per_page=100" --paginate \
-  --jq '.[] | select(.milestone != null) | .number' | while read -r num; do
+  --jq '.[] | select(.milestone != null and (.pull_request | not)) | .number' | while read -r num; do
   id="$(gh issue view "$num" --repo "$FULL" --json id -q .id)"
   gh api graphql -f query="
     mutation {
