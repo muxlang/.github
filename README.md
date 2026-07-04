@@ -3,9 +3,15 @@
 Organization-level defaults for the [muxlang](https://github.com/muxlang) org:
 
 - `profile/README.md` - the org profile shown on the [organization page](https://github.com/muxlang).
-- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` - shared community-health defaults applied
-  org-wide to any repo that does not define its own.
-- `ISSUE_TEMPLATE/`, `PULL_REQUEST_TEMPLATE.md` - default issue/PR templates.
+- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` - shared community-health defaults.
+- `labels/` - canonical label YAML and per-repo overlays.
+- `templates/<repo>/` - canonical issue template sources synced to each repo.
+- `scripts/sync-labels.sh` - apply label YAML to org repos (`gh` CLI required).
+- `scripts/retire-labels.sh` - delete retired labels org-wide.
+- `scripts/clear-milestones.sh` - bulk-clear milestones from a repo's issues.
 
-Per-repo files override these defaults. See each repo's own `README.md` and
-`AGENTS.md` for repo-specific guidance.
+Policy and workflow rules:
+[mux-context/docs/repo-governance.md](https://github.com/muxlang/mux-context/blob/main/docs/repo-governance.md).
+
+Per-repo `.github/ISSUE_TEMPLATE/` files are synced from `templates/` here.
+Do not copy templates or invent labels in individual repos.

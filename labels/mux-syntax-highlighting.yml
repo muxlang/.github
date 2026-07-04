@@ -1,0 +1,26 @@
+# mux-syntax-highlighting overlay on labels.yml
+
+- name: syntax-spec
+  color: 006b75
+  description: syntax-matrix.json or canonical spec change
+- name: textmate
+  color: 1d76db
+  description: TextMate grammar generation or parity
+- name: editor-support
+  color: 5319e7
+  description: editor-support configs (Sublime, JetBrains, etc.)
+- name: vscode
+  color: 0078d4
+  description: VSCode extension or grammar package
+- name: sublime
+  color: ff9800
+  description: Sublime Text highlighting or config
+- name: jetbrains
+  color: 000000
+  description: JetBrains IDE highlighting or config
+- name: neovim
+  color: 57a143
+  description: Neovim editor-support config
+- name: helix
+  color: 675b2d
+  description: Helix editor-support config

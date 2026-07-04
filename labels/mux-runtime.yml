@@ -1,0 +1,8 @@
+# mux-runtime overlay on labels.yml
+
+- name: stdlib
+  color: "560143"
+  description: Standard library addition or change
+- name: ffi
+  color: 4a7967
+  description: C-ABI or FFI surface change

@@ -1,0 +1,11 @@
+# mux-context overlay on labels.yml
+
+- name: architecture
+  color: 006b75
+  description: Cross-repo architecture or repo map
+- name: adr
+  color: 5319e7
+  description: Architecture decision record
+- name: governance
+  color: fbca04
+  description: Labels, templates, project board, or process
