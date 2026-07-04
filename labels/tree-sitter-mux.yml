@@ -1,0 +1,20 @@
+# tree-sitter-mux overlay on labels.yml
+
+- name: grammar
+  color: 006b75
+  description: grammar.js or parser behavior
+- name: queries
+  color: 5319e7
+  description: Highlight or query .scm files
+- name: syntax-matrix
+  color: 1d76db
+  description: Vendored syntax-matrix.json sync or drift
+- name: neovim
+  color: 57a143
+  description: Neovim / nvim-treesitter integration
+- name: helix
+  color: 675b2d
+  description: Helix grammar or query integration
+- name: emacs
+  color: 7b1fa2
+  description: Emacs tree-sitter integration

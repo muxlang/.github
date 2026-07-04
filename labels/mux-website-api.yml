@@ -1,0 +1,11 @@
+# mux-website-api overlay on labels.yml
+
+- name: security
+  color: b60205
+  description: Sandbox, auth, rate limits, or untrusted code execution
+- name: sandbox
+  color: d93f0b
+  description: Compile/run isolation or resource limits
+- name: deployment
+  color: fbca04
+  description: Fly.io deploy, Docker image, or MUX_VERSION pin

@@ -1,0 +1,14 @@
+# mux-website overlay on labels.yml
+
+- name: playground
+  color: 1d76db
+  description: In-browser playground UI or behavior
+- name: docs-site
+  color: 0075ca
+  description: Docusaurus docs site content or layout
+- name: mux-ai
+  color: 5319e7
+  description: Docs AI assistant worker or indexing
+- name: docusaurus
+  color: 0e8a16
+  description: Docusaurus build, config, or tooling

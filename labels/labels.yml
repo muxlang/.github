@@ -1,9 +1,7 @@
-# Canonical label set for every muxlang repo. This file is the authoritative
-# list; apply it to each repo manually (e.g. gh label create --force). See
-# docs/repo-governance.md in mux-context for the taxonomy and Linear mapping.
-# ASCII only (org rule). Colors are 6-digit hex, no leading '#'.
+# Canonical label set for every muxlang repo. Apply with scripts/sync-labels.sh.
+# Policy: mux-context/docs/repo-governance.md. ASCII only; 6-digit hex colors.
 
-# --- Kind (complements the issue type) ---
+# --- Kind ---
 - name: documentation
   color: 0075ca
   description: Improvements or additions to documentation
@@ -19,22 +17,11 @@
 - name: testing
   color: 9f267d
   description: Test coverage or test infrastructure
+- name: enhancement
+  color: a2eeef
+  description: Improvement to existing behavior or UX
 
-# --- Priority (maps to Linear priority) ---
-- name: "priority: urgent"
-  color: b60205
-  description: Needs attention now
-- name: "priority: high"
-  color: d93f0b
-  description: Important, schedule soon
-- name: "priority: medium"
-  color: fbca04
-  description: Normal priority
-- name: "priority: low"
-  color: 0e8a16
-  description: Nice to have, no rush
-
-# --- Quality (works, but feels off) ---
+# --- Quality ---
 - name: inconsistency
   color: c5def5
   description: Behaves or looks different across places that should match
