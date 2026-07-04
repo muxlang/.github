@@ -12,7 +12,7 @@ gh api "repos/$FULL/issues?state=all&per_page=100" --paginate \
   id="$(gh issue view "$num" --repo "$FULL" --json id -q .id)"
   gh api graphql -f query="
     mutation {
-      clearMilestone(input: {issueId: \"$id\"}) {
+      updateIssue(input: {id: \"$id\", milestoneId: null}) {
         issue { number }
       }
     }"
