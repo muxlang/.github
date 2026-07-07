@@ -9,6 +9,9 @@ REPOS=(
 RETIRED=(
   "priority: urgent" "priority: high" "priority: medium" "priority: low"
   "needs tested" "bug" "feature"
+  # Mangled variants created by the old sync-labels.sh quote-stripping bug;
+  # the leading double-quote character is part of the live label name.
+  '"priority: urgent' '"priority: high' '"priority: medium' '"priority: low'
 )
 
 for repo in "${REPOS[@]}"; do

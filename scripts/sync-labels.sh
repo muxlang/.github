@@ -25,10 +25,13 @@ apply_yaml() {
     case "$line" in
       "- name:"*)
         name="${line#- name:}"
-        name="${name#\"}"
-        name="${name%\"}"
+        # Trim whitespace BEFORE stripping quotes: quoted names like
+        # "priority: urgent" used to keep their leading quote because the
+        # strip ran against ' "priority: urgent"' and missed.
         name="${name#"${name%%[![:space:]]*}"}"
         name="${name%"${name##*[![:space:]]}"}"
+        name="${name#\"}"
+        name="${name%\"}"
         ;;
       "  color:"*)
         color="${line#  color: }"

@@ -9,6 +9,8 @@ Organization-level defaults for the [muxlang](https://github.com/muxlang) org:
 - `scripts/sync-labels.sh` - apply label YAML to org repos (`gh` CLI required).
 - `scripts/sync-templates.sh` - copy `templates/<repo>/` into a repo checkout.
 - `scripts/retire-labels.sh` - delete retired labels org-wide.
+- `scripts/validate-labels.py` - diff live labels against the canonical YAML;
+  exits nonzero on drift (run after any sync or retire).
 - `scripts/clear-milestones.sh` - bulk-clear milestones from a repo's issues.
 
 Policy and workflow rules:
