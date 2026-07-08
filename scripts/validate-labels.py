@@ -38,7 +38,7 @@ def parse_yaml(path):
         if m:
             color = m.group(1).strip().strip('"')
             continue
-        m = re.match(r'^\s+description:\s*(.+)$', raw)
+        m = re.match(r'^\s+description:\s*(.*)$', raw)
         if m and name and color:
             labels[name] = (color.lower(), m.group(1).strip().strip('"'))
             name = color = None
@@ -46,14 +46,16 @@ def parse_yaml(path):
 
 
 def live_labels(repo):
+    # gh api --paginate follows Link headers, so repos with more than one
+    # page of labels are fully covered (gh label list caps at its --limit).
     out = subprocess.run(
-        ["gh", "label", "list", "-R", f"muxlang/{repo}", "--limit", "100",
-         "--json", "name,color,description"],
+        ["gh", "api", f"repos/muxlang/{repo}/labels", "--paginate",
+         "--jq", ".[] | {name, color, description}"],
         check=True, capture_output=True, text=True,
     ).stdout
     return {
-        l["name"]: (l["color"].lower(), l["description"])
-        for l in json.loads(out)
+        l["name"]: (l["color"].lower(), l["description"] or "")
+        for l in (json.loads(line) for line in out.splitlines() if line)
     }
 
 
