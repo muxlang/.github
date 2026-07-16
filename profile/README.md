@@ -12,7 +12,7 @@ via LLVM.
 
 [![Website](https://img.shields.io/badge/mux--lang.dev-visit-2ea6ff.svg?style=flat-square)](https://mux-lang.dev)
 [![Docs](https://img.shields.io/badge/docs-read-blue.svg?style=flat-square)](https://mux-lang.dev/docs/getting-started/quick-start)
-[![Playground](https://img.shields.io/badge/playground-try%20online-orange.svg?style=flat-square)](https://mux-lang.dev)
+[![Playground](https://img.shields.io/badge/playground-try%20online-orange.svg?style=flat-square)](https://mux-lang.dev/playground)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/muxlang/mux-compiler/blob/main/LICENSE)
 
 </div>
@@ -53,7 +53,7 @@ curl -fsSL https://raw.githubusercontent.com/muxlang/mux-compiler/main/scripts/i
 mux run hello.mux
 ```
 
-Or skip the install and **[try it in the playground](https://mux-lang.dev)**.
+Or skip the install and **[try it in the playground](https://mux-lang.dev/playground)**.
 
 ## Why Mux?
 
