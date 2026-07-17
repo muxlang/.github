@@ -21,9 +21,11 @@ Report privately through GitHub's private vulnerability reporting:
 2. Click **Report a vulnerability** (under "Advisories").
 3. Describe the issue with enough detail to reproduce it.
 
-This opens a private advisory visible only to you and the maintainers. If you
-cannot use private reporting, contact the maintainer
-[@DerekCorniello](https://github.com/DerekCorniello) directly and privately.
+This opens a private advisory visible only to you and the repository's
+maintainer team (the primary channel, so a report does not depend on any single
+person being available). If you cannot use private reporting, contact a
+maintainer - currently [@DerekCorniello](https://github.com/DerekCorniello) -
+directly and privately.
 
 Please include, where you can:
 
@@ -37,7 +39,10 @@ Please include, where you can:
 - We aim to acknowledge a report within a few days.
 - We will confirm the issue, keep you updated on progress, and credit you in the
   advisory and release notes unless you ask us not to.
-- Once a fix is released, we publish the advisory with the details.
+- We aim to release a fix and publish the advisory within **90 days** of
+  acknowledgment. If we need longer, we will say so and agree a timeline with
+  you; if you plan to disclose publicly, please coordinate with us first so a
+  fix is available to users.
 
 ## Scope
 
