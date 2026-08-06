@@ -56,6 +56,16 @@ Policy and workflow rules:
 
 ---
 
+## FOSS Usage:
+
+Thank you to the following companies who have allowed this project to use their services under FOSS terms:
+
+[Greptile](https://www.greptile.com): The War on Bugs [![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
+
+[SonarQube Cloud](https://sonarcloud.io): Continuous Code Quality and Security ![SonarQube Cloud](https://img.shields.io/badge/-black?style=flat&logo=sonarqubecloud&logoColor=white)
+
+[Blacksmith](https://www.blacksmith.sh): The fastest way to run your GitHub Actions
+
 ## License
 
 [MIT](LICENSE) - Maintained by [Derek Corniello](https://github.com/DerekCorniello)
