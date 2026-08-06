@@ -19,35 +19,14 @@ via LLVM.
 
 ---
 
-## A first taste
-
-```mux
-// Error handling with Result types
-func divide(int a, int b) returns result<int, string> {
-    if b == 0 {
-        return err("division by zero")
-    }
-    return ok(a / b)
-}
-
-// Pattern matching with exhaustive checking
-func main() returns void {
-    match divide(10, 2) {
-        ok(value) {
-            print("Result: " + value.to_string())
-        }
-        err(error) {
-            print("Error: " + error)
-        }
-    }
-}
-```
-
 ## Get started
 
 ```bash
 # Install (Linux/macOS)
 curl -fsSL https://raw.githubusercontent.com/muxlang/mux-compiler/main/scripts/install.sh | sh
+
+# Or on Windows (PowerShell)
+irm https://raw.githubusercontent.com/muxlang/mux-compiler/main/scripts/install.ps1 | iex
 
 # Run your first program
 mux run hello.mux
@@ -83,6 +62,16 @@ Or skip the install and **[try it in the playground](https://mux-lang.dev/playgr
   guidelines live in [CONTRIBUTING.md](https://github.com/muxlang/.github/blob/main/CONTRIBUTING.md).
 - **Found a bug or have an idea?** Open an issue in the relevant repo - or, if
   you're unsure which, in [mux-context](https://github.com/muxlang/mux-context/issues) for triage.
+
+## FOSS Usage:
+
+Thank you to the following companies who have allowed this project to use their services under FOSS terms:
+
+[Greptile](https://www.greptile.com): The War on Bugs [![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
+
+[SonarQube Cloud](https://sonarcloud.io): Continuous Code Quality and Security ![SonarQube Cloud](https://img.shields.io/badge/-black?style=flat&logo=sonarqubecloud&logoColor=white)
+
+[Blacksmith](https://www.blacksmith.sh): The fastest way to run your GitHub Actions
 
 <div align="center">
 
