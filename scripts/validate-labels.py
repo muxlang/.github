@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Validate live GitHub labels against the canonical labels/*.yml files.
 
-For every muxlang repo, fetches the live label set with `gh` and diffs it
-against labels/labels.yml plus the repo's overlay (labels/<repo>.yml).
+For every repository in repositories.txt, fetches the live label set with `gh`
+and diffs it against labels/labels.yml plus the repository overlay
+(labels/<repo>.yml).
 Reports labels that are MISSING (canonical but not live), EXTRA (live but
 not canonical), or DRIFTED (color or description differs).
 
@@ -14,16 +15,11 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from repository_manifest import load
 
 ROOT = Path(__file__).resolve().parent.parent
 LABELS = ROOT / "labels"
-
-ALL_REPOS = [
-    "mux-compiler", "mux-runtime", "mux-website-api",
-    "mux-syntax-highlighting", "mux-website", "tree-sitter-mux",
-    "mux-context", ".github",
-]
-
+MANIFEST = ROOT / "repositories.txt"
 
 def parse_yaml(path):
     """Parse the flat '- name/color/description' label YAML (no deps)."""
@@ -45,6 +41,28 @@ def parse_yaml(path):
     return labels
 
 
+def verify_repo(repo):
+    """Reject archived, forked, renamed, or non-default-branch targets."""
+    out = subprocess.run(
+        [
+            "gh", "api", f"repos/muxlang/{repo}",
+            "--jq", "[.full_name, .default_branch, .archived, .fork] | @tsv",
+        ],
+        check=True, capture_output=True, text=True,
+    ).stdout.strip()
+    full_name, default_branch, archived, fork = out.split("\t")
+    if (
+        full_name != f"muxlang/{repo}"
+        or default_branch != "main"
+        or archived != "false"
+        or fork != "false"
+    ):
+        raise ValueError(
+            f"refusing {repo}: expected active muxlang repository with main "
+            f"default branch, got {out!r}"
+        )
+
+
 def live_labels(repo):
     # gh api --paginate follows Link headers, so repos with more than one
     # page of labels are fully covered (gh label list caps at its --limit).
@@ -60,11 +78,39 @@ def live_labels(repo):
 
 
 def main():
-    repos = sys.argv[1:] or ALL_REPOS
-    base = parse_yaml(LABELS / "labels.yml")
+    try:
+        all_repos = load(MANIFEST)
+        requested = sys.argv[1:] or all_repos
+        unknown = sorted(set(requested) - set(all_repos))
+        if unknown:
+            raise ValueError(f"repositories not in repositories.txt: {', '.join(unknown)}")
+        if len(set(requested)) != len(requested):
+            raise ValueError("a repository may be validated only once")
+        base = parse_yaml(LABELS / "labels.yml")
+        if not base:
+            raise ValueError(f"canonical labels file is empty: {LABELS / 'labels.yml'}")
+        overlays = {path.stem for path in LABELS.glob("*.yml")} - {"labels"}
+        unknown_overlays = sorted(overlays - set(all_repos))
+        if unknown_overlays:
+            raise ValueError(
+                "label overlays have no manifest repository: "
+                + ", ".join(unknown_overlays)
+            )
+    except (OSError, ValueError, subprocess.CalledProcessError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+
     dirty = False
 
-    for repo in repos:
+    print(f"Manifest: {len(all_repos)} repositories")
+    for repo in requested:
+        try:
+            verify_repo(repo)
+        except (OSError, ValueError, subprocess.CalledProcessError) as error:
+            print(f"error: {repo}: {error}", file=sys.stderr)
+            dirty = True
+            continue
+
         expected = dict(base)
         overlay = LABELS / f"{repo}.yml"
         if overlay.exists():

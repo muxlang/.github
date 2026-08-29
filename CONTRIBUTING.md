@@ -15,6 +15,7 @@ testing, etc.) - always check the repo you are working in.
 | Playground compile/run API | [mux-website-api](https://github.com/muxlang/mux-website-api) |
 | Tree-sitter grammar (Neovim/Helix/Emacs) | [tree-sitter-mux](https://github.com/muxlang/tree-sitter-mux) |
 | TextMate / VSCode / editor highlighting | [mux-syntax-highlighting](https://github.com/muxlang/mux-syntax-highlighting) |
+| Intentional teaching examples | [mux-examples](https://github.com/muxlang/mux-examples) |
 | Cross-repo architecture / design / docs about how it all fits | [mux-context](https://github.com/muxlang/mux-context) |
 
 Not sure where something belongs? Open an issue in

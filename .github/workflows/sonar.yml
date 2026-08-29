@@ -13,7 +13,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      # v4.2.2; keep the governance workflow immutable like every consumer.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0 # Disable shallow clone for better analysis relevancy
       - name: SonarQube Scan

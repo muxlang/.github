@@ -1,0 +1,11 @@
+# Canonical muxlang repository manifest. Keep this list in sync with the
+# organization and use it as the input for label and template tooling.
+mux-runtime
+mux-compiler
+mux-website-api
+mux-website
+.github
+tree-sitter-mux
+mux-syntax-highlighting
+mux-examples
+mux-context

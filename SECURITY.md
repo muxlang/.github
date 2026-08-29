@@ -46,9 +46,10 @@ Please include, where you can:
 
 ## Scope
 
-The Mux toolchain compiles and runs untrusted code by design (notably the
-playground API, which executes user-submitted programs in a sandbox). Reports
-that are especially valuable include:
+The Mux toolchain compiles and runs submitted code by design (notably the
+playground API, which currently launches programs as same-user subprocesses;
+the stronger isolation boundary is tracked as deployment work). Reports that
+are especially valuable include:
 
 - sandbox escapes or resource-exhaustion bypasses in the playground API,
 - compiler or runtime memory-safety issues reachable from valid Mux input,
