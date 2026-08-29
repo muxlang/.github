@@ -29,26 +29,8 @@ contains_repo() {
 }
 
 validate_manifest() {
-  [[ -f "$MANIFEST" ]] || die "missing repository manifest: $MANIFEST"
-  local -a repos=()
-  local line repo
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    repo="${line%%#*}"
-    repo="${repo##+([[:space:]])}"
-    repo="${repo%%+([[:space:]])}"
-    [[ -z "$repo" ]] && continue
-    [[ "$repo" =~ ^[A-Za-z0-9._-]+$ ]] || die "invalid repository name: $repo"
-    for existing in "${repos[@]}"; do
-      [[ "$existing" != "$repo" ]] || die "duplicate repository: $repo"
-    done
-    repos+=("$repo")
-  done < "$MANIFEST"
-  [[ "${#repos[@]}" -eq 9 ]] || die "repositories.txt must contain exactly nine repositories"
-  for required in mux-runtime mux-compiler mux-website-api mux-website .github \
-    tree-sitter-mux mux-syntax-highlighting mux-examples mux-context; do
-    printf '%s\n' "${repos[@]}" | grep -Fxq -- "$required" || \
-      die "repositories.txt is missing $required"
-  done
+  "$ROOT/scripts/repository_manifest.py" "$MANIFEST" >/dev/null || \
+    die "invalid repository manifest: $MANIFEST"
 }
 
 validate_destination() {
@@ -132,29 +114,45 @@ show_diff() {
 
 apply_stage() {
   local backup
+  local backed_templates=false backed_workflow=false backed_labels=false
+  local installed_templates=false installed_workflow=false installed_labels=false
   backup="$(mktemp -d "${TMPDIR:-/tmp}/mux-template-rollback.XXXXXX")"
   mkdir -p "$backup/workflows"
 
   restore() {
     local status=$?
     if [[ "$status" -ne 0 ]]; then
-      rm -rf "$DEST/.github/ISSUE_TEMPLATE" "$DEST/.github/workflows/issue-triage.yml" "$DEST/.github/labels.yml"
-      if [[ -d "$backup/ISSUE_TEMPLATE" ]]; then mv "$backup/ISSUE_TEMPLATE" "$DEST/.github/ISSUE_TEMPLATE"; fi
-      if [[ -f "$backup/workflows/issue-triage.yml" ]]; then mv "$backup/workflows/issue-triage.yml" "$DEST/.github/workflows/issue-triage.yml"; fi
-      if [[ -f "$backup/labels.yml" ]]; then mv "$backup/labels.yml" "$DEST/.github/labels.yml"; fi
+      [[ "$installed_templates" == true ]] && rm -rf "$DEST/.github/ISSUE_TEMPLATE"
+      [[ "$installed_workflow" == true ]] && rm -f "$DEST/.github/workflows/issue-triage.yml"
+      [[ "$installed_labels" == true ]] && rm -f "$DEST/.github/labels.yml"
+      [[ "$backed_templates" == true ]] && mv "$backup/ISSUE_TEMPLATE" "$DEST/.github/ISSUE_TEMPLATE"
+      [[ "$backed_workflow" == true ]] && mv "$backup/workflows/issue-triage.yml" "$DEST/.github/workflows/issue-triage.yml"
+      [[ "$backed_labels" == true ]] && mv "$backup/labels.yml" "$DEST/.github/labels.yml"
     fi
     trap - RETURN
     return "$status"
   }
   trap restore RETURN
 
-  if [[ -d "$DEST/.github/ISSUE_TEMPLATE" ]]; then mv "$DEST/.github/ISSUE_TEMPLATE" "$backup/ISSUE_TEMPLATE"; fi
-  if [[ -f "$DEST/.github/workflows/issue-triage.yml" ]]; then mv "$DEST/.github/workflows/issue-triage.yml" "$backup/workflows/issue-triage.yml"; fi
-  if [[ -f "$DEST/.github/labels.yml" ]]; then mv "$DEST/.github/labels.yml" "$backup/labels.yml"; fi
+  if [[ -d "$DEST/.github/ISSUE_TEMPLATE" ]]; then
+    mv "$DEST/.github/ISSUE_TEMPLATE" "$backup/ISSUE_TEMPLATE"
+    backed_templates=true
+  fi
+  if [[ -f "$DEST/.github/workflows/issue-triage.yml" ]]; then
+    mv "$DEST/.github/workflows/issue-triage.yml" "$backup/workflows/issue-triage.yml"
+    backed_workflow=true
+  fi
+  if [[ -f "$DEST/.github/labels.yml" ]]; then
+    mv "$DEST/.github/labels.yml" "$backup/labels.yml"
+    backed_labels=true
+  fi
   mkdir -p "$DEST/.github/workflows"
   mv "$STAGE/ISSUE_TEMPLATE" "$DEST/.github/ISSUE_TEMPLATE"
+  installed_templates=true
   mv "$STAGE/workflows/issue-triage.yml" "$DEST/.github/workflows/issue-triage.yml"
+  installed_workflow=true
   mv "$STAGE/labels.yml" "$DEST/.github/labels.yml"
+  installed_labels=true
   echo "Applied. Rollback bundle: $backup"
   trap - RETURN
 }

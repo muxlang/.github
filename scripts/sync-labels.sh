@@ -7,17 +7,6 @@ shopt -s extglob
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MANIFEST="$ROOT/repositories.txt"
-EXPECTED_REPOS=(
-  mux-runtime
-  mux-compiler
-  mux-website-api
-  mux-website
-  .github
-  tree-sitter-mux
-  mux-syntax-highlighting
-  mux-examples
-  mux-context
-)
 
 die() {
   echo "error: $*" >&2
@@ -25,26 +14,8 @@ die() {
 }
 
 read_manifest() {
-  [[ -f "$MANIFEST" ]] || die "missing repository manifest: $MANIFEST"
-  MANIFEST_REPOS=()
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    repo="${line%%#*}"
-    repo="${repo##+([[:space:]])}"
-    repo="${repo%%+([[:space:]])}"
-    [[ -z "$repo" ]] && continue
-    [[ "$repo" =~ ^[A-Za-z0-9._-]+$ ]] || die "invalid repository name: $repo"
-    for existing in "${MANIFEST_REPOS[@]}"; do
-      [[ "$existing" != "$repo" ]] || die "duplicate repository: $repo"
-    done
-    MANIFEST_REPOS+=("$repo")
-  done < "$MANIFEST"
-
-  [[ "${#MANIFEST_REPOS[@]}" -eq "${#EXPECTED_REPOS[@]}" ]] || \
-    die "repositories.txt must contain exactly nine repositories"
-  for expected in "${EXPECTED_REPOS[@]}"; do
-    printf '%s\n' "${MANIFEST_REPOS[@]}" | grep -Fxq -- "$expected" || \
-      die "repositories.txt is missing $expected"
-  done
+  mapfile -t MANIFEST_REPOS < <("$ROOT/scripts/repository_manifest.py" "$MANIFEST") || \
+    die "invalid repository manifest: $MANIFEST"
 }
 
 contains_repo() {
