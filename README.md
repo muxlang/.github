@@ -22,6 +22,7 @@ sync labels and issue templates into every repo.
 |------|------------|
 | `profile/README.md` | The org profile shown on the [organization page](https://github.com/muxlang) |
 | `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` | Shared community-health defaults |
+| `repositories.txt` | The nine-repository organization manifest |
 | `labels/` | Canonical label YAML and per-repo overlays |
 | `templates/<repo>/` | Canonical issue template sources synced to each repo |
 | `scripts/sync-labels.sh` | Apply label YAML to org repos (`gh` CLI required) |
@@ -52,6 +53,7 @@ Policy and workflow rules:
 | [mux-website-api](https://github.com/muxlang/mux-website-api) | Compile/run API behind the playground |
 | [tree-sitter-mux](https://github.com/muxlang/tree-sitter-mux) | Tree-sitter grammar + highlight queries |
 | [mux-syntax-highlighting](https://github.com/muxlang/mux-syntax-highlighting) | TextMate grammar, VSCode extension, canonical syntax spec |
+| [mux-examples](https://github.com/muxlang/mux-examples) | Intentional teaching examples and their expected output |
 | [mux-context](https://github.com/muxlang/mux-context) | Cross-repo architecture, design rationale, glossary, releases |
 
 ---

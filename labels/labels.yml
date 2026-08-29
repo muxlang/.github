@@ -1,4 +1,5 @@
-# Canonical label set for every muxlang repo. Apply with scripts/sync-labels.sh.
+# Canonical label set for every repository in repositories.txt. Apply with
+# scripts/sync-labels.sh.
 # Policy: mux-context/docs/repo-governance.md. ASCII only; 6-digit hex colors.
 
 # --- Kind ---
