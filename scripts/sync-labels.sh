@@ -62,6 +62,11 @@ parse_targets() {
   for repo in "${TARGETS[@]}"; do
     contains_repo "$repo" || die "repository is not in repositories.txt: $repo"
   done
+  declare -A seen_targets=()
+  for repo in "${TARGETS[@]}"; do
+    [[ -z "${seen_targets[$repo]+x}" ]] || die "repository may be synced only once: $repo"
+    seen_targets[$repo]=1
+  done
 }
 
 validate_label_file() {
@@ -79,8 +84,8 @@ apply_yaml() {
     case "$line" in
       "- name:"*)
         name="${line#- name:}"
-        name="${name#\"}"; name="${name%\"}"
         name="${name##+([[:space:]])}"; name="${name%%+([[:space:]])}"
+        name="${name#\"}"; name="${name%\"}"
         ;;
       "  color:"*)
         color="${line#  color: }"
@@ -107,6 +112,7 @@ apply_yaml() {
   done < "$file"
 }
 
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
 read_manifest
 parse_targets "$@"
 
@@ -135,3 +141,4 @@ for repo in "${TARGETS[@]}"; do
 done
 
 echo "Done."
+fi

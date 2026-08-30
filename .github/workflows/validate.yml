@@ -1,0 +1,25 @@
+name: Validate governance sources
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate scripts and manifest
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Validate Python and shell sources
+        run: |
+          python3 -m py_compile scripts/repository_manifest.py scripts/validate-labels.py
+          scripts/repository_manifest.py repositories.txt
+          bash -n scripts/sync-labels.sh scripts/sync-templates.sh
+          bash scripts/test-sync-labels.sh
