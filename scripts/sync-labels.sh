@@ -62,6 +62,11 @@ parse_targets() {
   for repo in "${TARGETS[@]}"; do
     contains_repo "$repo" || die "repository is not in repositories.txt: $repo"
   done
+  declare -A seen_targets=()
+  for repo in "${TARGETS[@]}"; do
+    [[ -z "${seen_targets[$repo]+x}" ]] || die "repository may be synced only once: $repo"
+    seen_targets[$repo]=1
+  done
 }
 
 validate_label_file() {
