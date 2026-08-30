@@ -84,8 +84,8 @@ apply_yaml() {
     case "$line" in
       "- name:"*)
         name="${line#- name:}"
-        name="${name#\"}"; name="${name%\"}"
         name="${name##+([[:space:]])}"; name="${name%%+([[:space:]])}"
+        name="${name#\"}"; name="${name%\"}"
         ;;
       "  color:"*)
         color="${line#  color: }"
@@ -112,6 +112,7 @@ apply_yaml() {
   done < "$file"
 }
 
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
 read_manifest
 parse_targets "$@"
 
@@ -140,3 +141,4 @@ for repo in "${TARGETS[@]}"; do
 done
 
 echo "Done."
+fi

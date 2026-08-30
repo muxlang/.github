@@ -22,3 +22,4 @@ jobs:
           python3 -m py_compile scripts/repository_manifest.py scripts/validate-labels.py
           scripts/repository_manifest.py repositories.txt
           bash -n scripts/sync-labels.sh scripts/sync-templates.sh
+          bash scripts/test-sync-labels.sh
