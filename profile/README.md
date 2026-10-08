@@ -34,6 +34,14 @@ mux run hello.mux
 
 Or skip the install and **[try it in the playground](https://mux-lang.dev/playground)**.
 
+## Editor support
+
+- **VS Code:** install [Mux Language Support](https://marketplace.visualstudio.com/items?itemName=mux-lang.language-mux).
+- **Neovim:** install the [Mux plugin](https://github.com/muxlang/tree-sitter-mux) with your plugin manager. It provides syntax highlighting and starts `mux lsp`.
+
+Both integrations use the compiler's built-in language server. Install Mux
+0.13.0 or newer first.
+
 ## Why Mux?
 
 - **Simple & readable** - clean, semicolon-free syntax with Python-like clarity.
