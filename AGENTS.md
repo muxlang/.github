@@ -16,4 +16,6 @@ Run `python3 -m py_compile scripts/validate-labels.py` and
 `bash -n scripts/sync-labels.sh scripts/sync-templates.sh` for the local
 quality check. See [CONTRIBUTING.md](CONTRIBUTING.md) and the
 [governance policy](https://github.com/muxlang/mux-context/blob/main/docs/repo-governance.md)
-for the workflow and merge rules.
+for the workflow and merge rules. CI also runs the quoted-label regression
+check. Shared testing guidance lives in the
+[cross-repo testing policy](https://github.com/muxlang/mux-context/blob/main/docs/testing-policy.md).
